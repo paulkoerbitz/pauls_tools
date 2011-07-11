@@ -20,15 +20,15 @@ def createLogFilename(basedir,programName,logfileName=None,dateTimeStr=None):
     """Create a logfile name of the form 
     basedir/programName/DateTimeStamp/logfileName"""
     if dateTimeStr is None:
-        dateTimeStr = datetime.now().strftime("%Y-%m-%d-%a--%H-%M")
+        dateTimeStr = datetime.now().strftime("%Y_%m_%d_%a__%H_%M")
     logfilePath = os.path.join(basedir,programName,dateTimeStr)
     ensurePathExists(logfilePath)
     if logfileName is None:
-        logfileName = "-".join([programName,"log.txt"])
-    return os.path.join([logfilePath,logfileName])
+        logfileName = "_".join([programName,"log.txt"])
+    return os.path.join(logfilePath,logfileName)
 
 def ensurePathExists(pathName):
-    """Create the path with name pathName if it doesn't already exist."""
-    d = os.path.dirname(pathName)
-    if not os.path.exists(d):
-        os.makedirs(d)
+    """Create the path with name pathName if it doesn't already exist.
+    No error checking is performed."""
+    if not os.path.exists(pathName):
+        os.makedirs(pathName)
