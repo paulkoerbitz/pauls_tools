@@ -29,9 +29,10 @@ def get_latest_timestamped_dir(basedir, nth_latest=0):
     timestamped_dirs = [f for f in os.listdir(basedir)
                         if os.path.isdir(os.path.join(basedir, f)) and \
                             DATETIME_RE.match(f)]
-    if timestamped_dirs.empty():
+    if not timestamped_dirs:
         raise RuntimeError("No timestamped dir inside %s" % basedir)
     if nth_latest > len(timestamped_dirs)-1:
         raise RuntimeError("%s only has %d entries, you asked for the %d-th." \
                                % (basedir,len(timestamped_dirs),nth_latest+1))
-    return sorted(timestamped_dirs, reverse=True)[nth_latest]
+    return os.path.join(basedir, 
+                        sorted(timestamped_dirs, reverse=True)[nth_latest])
