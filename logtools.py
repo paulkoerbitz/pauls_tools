@@ -1,11 +1,10 @@
 #!/usr/bin/env python
-
 """Convenience Tools for creating loggers"""
 import logging
 import os
-from datetime import datetime
+import dirtools
 
-def createLogger(fname):
+def create_logger(fname):
     """Create a standard logger"""
     logger = logging.getLogger('MyLogger')
     logger.setLevel(logging.INFO) 
@@ -16,19 +15,11 @@ def createLogger(fname):
     logger.addHandler(handler)
     return logger
 
-def createLogFilename(basedir,programName,logfileName=None,dateTimeStr=None):
+def create_logfilename(basedir, program_name, logfile_name=None):
     """Create a logfile name of the form 
-    basedir/programName/DateTimeStamp/logfileName"""
-    if dateTimeStr is None:
-        dateTimeStr = datetime.now().strftime("%Y_%m_%d_%a__%H_%M")
-    logfilePath = os.path.join(basedir,programName,dateTimeStr)
-    ensurePathExists(logfilePath)
-    if logfileName is None:
-        logfileName = "_".join([programName,"log.txt"])
-    return os.path.join(logfilePath,logfileName)
-
-def ensurePathExists(pathName):
-    """Create the path with name pathName if it doesn't already exist.
-    No error checking is performed."""
-    if not os.path.exists(pathName):
-        os.makedirs(pathName)
+    basedir/program_name/datetime_stamp/logfile_name"""
+    logfile_path = dirtools.create_timestamped_dir(
+        os.path.join(basedir,program_name))
+    if logfile_name is None:
+        logfile_name = "_".join([program_name, "log.txt"])
+    return os.path.join(logfile_path, logfile_name)
