@@ -5,7 +5,7 @@ import re
 from datetime import datetime
 
 DATETIMEFORMAT = "%Y_%m_%d_%a__%H_%M"
-DATETIME_RE = re.compile("\d{4}_\d{2}_\d{2}_\w{3}__\d{2}_\d{2}")
+DATETIME_RE = re.compile("\d{4}_\d{2}_\d{2}_\w{3}__\d{2}_\d{2}/?$")
 
 def ensure_path_exists(pathname):
     """Create the path with name pathName if it doesn't already exist.
