@@ -3,7 +3,7 @@ import csv as Csv
 import numpy as np
 import matplotlib.pyplot as pp
 import warnings
-from paulsTools import plot
+from pauls_tools import plot
 
 class excelSkipBlank(Csv.excel):
     skipinitialspace = True
