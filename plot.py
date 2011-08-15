@@ -36,7 +36,7 @@ def multiplotFromListDict(ListDict, plotFunc=pp.plot, fig=None, saveTo=None,
 
 def multiseriesPlotFromListDict(ListDict, plotFunc=pp.plot, fig=None,
         saveTo=None, xList=None, title=None, xlab=None, ylab=None, 
-        listOfKeyLabelTuplesToPlot=None,lkwargs=None):
+        listOfKeyLabelTuplesToPlot=None,show_legend=True,lkwargs=None):
 
     if fig is None:
         fig = pp.figure()
@@ -60,7 +60,8 @@ def multiseriesPlotFromListDict(ListDict, plotFunc=pp.plot, fig=None,
             plotFunc(xVals,np.array(ListDict[key]),label=label,**kwargs)
         else:
             plotFunc(np.array(ListDict[key]),label=label,**kwargs)
-    pp.legend(loc='best')
+    if show_legend:
+        pp.legend(loc='best')
 
     if title:
         pp.title(title)
