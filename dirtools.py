@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """ Tools for creating and retrieving timestamped directories"""
 import os
 import re
