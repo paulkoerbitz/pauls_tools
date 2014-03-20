@@ -33,6 +33,10 @@ def multihistFromCsv(filename, nBins=100, saveTo=None):
 
     plot.multiplotFromListDict(Dict,histplot,None,saveTo)
 
+def multiplotFromCsv(filename, saveTo=None):
+    Dict = listDictFromCsv(filename)
+    plot.multiplotFromListDict(Dict,pp.plot,None,saveTo)
+
 
 def linesToDict(listOfStrings):
     valDict = {}
